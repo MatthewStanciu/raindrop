@@ -1,6 +1,7 @@
 import { NextAuthOptions } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 import { db } from './db'
+import isInOrg from './is-in-org'
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -16,16 +17,6 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
-    async session({ token, session }) {
-      if (token) {
-        //@ts-ignore
-        session.user.id = token.id
-        //@ts-ignore
-        session.user.email = token.email
-      }
-
-      return session
-    },
     async redirect({ url, baseUrl }) {
       return '/dashboard'
     }
