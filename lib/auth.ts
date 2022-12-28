@@ -17,6 +17,22 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
+    async session({ token, session }) {
+      const dbUser = await db.user.findFirst({
+        where: {
+          email: token.email as string
+        }
+      })
+      if (!dbUser) {
+        await db.user.create({
+          data: {
+            email: token.email as string
+          }
+        })
+      }
+
+      return session
+    },
     async redirect({ url, baseUrl }) {
       return '/dashboard'
     }
