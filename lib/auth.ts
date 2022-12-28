@@ -17,6 +17,10 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      const inOrg = await isInOrg(user.email)
+      return inOrg
+    },
     async session({ token, session }) {
       const dbUser = await db.user.findFirst({
         where: {
