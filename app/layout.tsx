@@ -1,12 +1,9 @@
 import type { PropsWithChildren } from 'react'
 import '../styles/globals.css'
 
-function Layout({ children }: PropsWithChildren<{}>) {
+async function Layout({ children }: PropsWithChildren<{}>) {
   return (
-    <html
-      lang="en-US"
-      // className={clsx(relativePro.variable, relativeMono.variable)}
-    >
+    <html lang="en-US">
       <head />
       <body>{children}</body>
     </html>

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getCurrentUser } from '../../../lib/session'
+import { getCurrentUser } from '../../lib/session'
 
 export default async function DashboardLayout({
   children
